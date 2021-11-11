@@ -5,3 +5,4 @@ import 'package:flutter/material.dart';
 const appPrimaryColor = Color(0xFFFA7E64);
 const secondColor = Color(0xFFAD5745);
 const buttonColor = Color(0xFFDE8028);
+const blackColor = Color(0xFF000000);

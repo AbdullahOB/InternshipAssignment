@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wheeloffortune/components/mainButton.dart';
+import 'package:wheeloffortune/components/ButtonMain.dart';
 import 'package:wheeloffortune/screens/HistoryScreen/HistoryScreen.dart';
 import 'package:wheeloffortune/screens/MainScreen/components/Background.dart';
 import 'package:wheeloffortune/screens/WheelScreen/WheelScreen.dart';
