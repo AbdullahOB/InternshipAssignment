@@ -16,12 +16,14 @@ class HistoryDatabase {
     return _database!;
   }
 
+  //initialize the data base and path.
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
+  //Create Database and Table
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
@@ -35,25 +37,28 @@ class HistoryDatabase {
     ''');
   }
 
+  //Create new record in database
   Future<WinHistory> create(WinHistory win) async {
     final db = await instance.database;
     final id = await db.insert(HistoryTable, win.toJson());
     return win.copy(id: id);
   }
 
+  //read all prizes and order them by ASC
   Future<List<WinHistory>> readAllHistory() async {
     final db = await instance.database;
     final order = '${WinHistoryFields.winDate} ASC';
     final result = await db.query(HistoryTable, orderBy: order);
-
     return result.map((json) => WinHistory.fromJson(json)).toList();
   }
 
+  //Delete all records from database
   Future deleteAll() async {
     final db = await instance.database;
     return await db.rawDelete("Delete from $HistoryTable");
   }
 
+  //Close the database
   Future close() async {
     final db = await instance.database;
     _database = null;

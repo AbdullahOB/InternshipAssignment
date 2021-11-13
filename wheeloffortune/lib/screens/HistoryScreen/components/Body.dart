@@ -57,7 +57,8 @@ class _HistoryBodyState extends State<HistoryBody> {
         children: <Widget>[
           for (var i in wins)
             HistoryCardWidget(
-              winDate: i.winDate!.toIso8601String(),
+              prize: i.prizeName.toString(),
+              winDate: i.winDate!.toString().substring(0, 16),
             ),
         ],
       ),

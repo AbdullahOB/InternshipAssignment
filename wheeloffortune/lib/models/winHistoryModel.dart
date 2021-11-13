@@ -38,6 +38,6 @@ class WinHistory {
   Map<String, Object?> toJson() => {
         WinHistoryFields.id: id,
         WinHistoryFields.prizeName: prizeName,
-        WinHistoryFields.winDate: winDate!.toString().substring(0, 10),
+        WinHistoryFields.winDate: winDate!.toString(),
       };
 }

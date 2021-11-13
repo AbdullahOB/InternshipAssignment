@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:wheeloffortune/models/wheelModel.dart';
-import 'package:wheeloffortune/screens/WheelScreen/components/ArrowView.dart';
+import 'package:wheeloffortune/screens/WheelScreen/components/ArrowDesign.dart';
 
-class BoardView extends StatefulWidget {
+class WheelDesign extends StatefulWidget {
   final double angle;
   final double current;
   final List<WheelModel> items;
 
-  const BoardView(
+  const WheelDesign(
       {Key? key,
       required this.angle,
       required this.current,
@@ -18,21 +18,22 @@ class BoardView extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _BoardViewState();
+    return _WheelDesignState();
   }
 }
 
-class _BoardViewState extends State<BoardView> {
+class _WheelDesignState extends State<WheelDesign> {
   //Get the number of items and multiply them by 2 for diameter and pi to make it circular.
   double rotate(int index) => (index / widget.items.length) * 2 * pi;
 
   @override
   Widget build(BuildContext context) {
+    //get the size of the screen
     Size size = MediaQuery.of(context).size * 0.8;
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        //shadow
+        //make shadow
         Container(
           height: size.height,
           width: size.width,
@@ -40,6 +41,7 @@ class _BoardViewState extends State<BoardView> {
               shape: BoxShape.circle,
               boxShadow: [BoxShadow(blurRadius: 12, color: Colors.black26)]),
         ),
+        //rotate functionality.
         Transform.rotate(
           angle: -(widget.current + widget.angle) * 2 * pi,
           child: Stack(
@@ -50,10 +52,11 @@ class _BoardViewState extends State<BoardView> {
             ],
           ),
         ),
+        //Make the Arrow.
         Container(
           height: size.height,
           width: size.width,
-          child: ArrowView(),
+          child: ArrowDesign(),
         ),
       ],
     );
@@ -61,6 +64,7 @@ class _BoardViewState extends State<BoardView> {
 
   wheelColors(WheelModel model) {
     Size size = MediaQuery.of(context).size * 0.8;
+
     var _rotate = rotate(widget.items.indexOf(model));
     var _angle = 2 * pi / widget.items.length;
     return Transform.rotate(

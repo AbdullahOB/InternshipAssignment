@@ -5,7 +5,7 @@ import 'package:wheeloffortune/constants.dart';
 import 'package:wheeloffortune/db/winHistory.dart';
 import 'package:wheeloffortune/models/wheelModel.dart';
 import 'package:wheeloffortune/models/winHistoryModel.dart';
-import 'BoardView.dart';
+import 'WheelDesign.dart';
 
 class WheelBody extends StatefulWidget {
   @override
@@ -17,14 +17,19 @@ class WheelBody extends StatefulWidget {
 class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
   late final WinHistory? wins;
 
+  //Angle will start from 0 and will end with 0.
   double angle = 0;
+  //Current Angle
   double current = 0;
+  //Controller for animation
   late AnimationController controller;
+  //Animation instance from Animation Class
   late Animation animation;
+  //Make a list of prizes and it's colors, all the colors are changable.
   List<WheelModel> wheelItems = [
     WheelModel("Iphone", appPrimaryColor),
     WheelModel("Ipad", secondColor),
-    WheelModel("Apple Watch", appPrimaryColor),
+    WheelModel("AppleWatch", appPrimaryColor),
     WheelModel("Laptop", secondColor),
     WheelModel("PC", appPrimaryColor),
     WheelModel("Macbook", secondColor),
@@ -55,15 +60,16 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
             builder: (context, child) {
               final value = animation.value;
               //check value
-              print(value);
+              //print(value);
               final _angle = value * this.angle;
               return Stack(
                 alignment: Alignment.center,
                 children: <Widget>[
                   //Board view instance and it will take three params which are Items , Current and Angle
-                  BoardView(items: wheelItems, current: current, angle: _angle),
+                  WheelDesign(
+                      items: wheelItems, current: current, angle: _angle),
                   //Call goButton Function
-                  goButton(value),
+                  spinButton(value),
                 ],
               );
             }),
@@ -71,7 +77,7 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
     );
   }
 
-  goButton(val) {
+  spinButton(val) {
     return Material(
       color: Colors.white,
       shape: CircleBorder(),
@@ -128,6 +134,7 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
   }
 
   winShowModal(context, prize) {
+    //add post frame callback so the wheel will not rotate immaditley.
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       Alert(
         context: context,
@@ -141,7 +148,7 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
             ),
             onPressed: () {
               Navigator.pop(context);
-              addWin(prize);
+              addWinToHistory(prize);
             },
             color: appPrimaryColor,
           )
@@ -150,17 +157,14 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
     });
   }
 
-  void addWin(prize) async {
-    await addWinToHistory(prize);
-    Navigator.of(context).pop();
-  }
-
+//add the prize to History
   Future addWinToHistory(prize) async {
     final win = WinHistory(
       prizeName: prize,
       winDate: DateTime.now(),
     );
 
+//create new record in database
     await HistoryDatabase.instance.create(win);
   }
 }

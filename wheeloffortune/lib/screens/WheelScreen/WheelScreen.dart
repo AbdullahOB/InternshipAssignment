@@ -13,6 +13,7 @@ class WheelScreen extends StatefulWidget {
 class _WheelScreenState extends State<WheelScreen> {
   @override
   Widget build(BuildContext context) {
+    //returns scaffold with appBar, and body.
     return Scaffold(
       appBar: AppBar(
         title: Text("Spin The Wheel Now"),

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:wheeloffortune/constants.dart';
 
 class HistoryCardWidget extends StatelessWidget {
-  const HistoryCardWidget({Key? key, required this.winDate}) : super(key: key);
+  const HistoryCardWidget(
+      {Key? key, required this.winDate, required this.prize})
+      : super(key: key);
   final String winDate;
+  final String prize;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -49,8 +52,10 @@ class HistoryCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage("assets/images/ps5.png"))),
+                          fit: BoxFit.contain,
+                          image: AssetImage("assets/images/" +
+                              prize.toLowerCase().toString() +
+                              ".png"))),
                 ),
               )),
           Positioned(
@@ -60,13 +65,70 @@ class HistoryCardWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Playstation 5",
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: appPrimaryColor,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    if (prize.toString() == "PS5")
+                      Text(
+                        "Playstation 5",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "TV")
+                      Text(
+                        "Televesion",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "Iphone")
+                      Text(
+                        "Ipone 12 Pro",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "Macbook")
+                      Text(
+                        "Macbook Air",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "Ipad")
+                      Text(
+                        "Ipad ",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "AppleWatch")
+                      Text(
+                        "Apple Watch",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "Laptop")
+                      Text(
+                        "Asus Laptop",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    if (prize.toString() == "PC")
+                      Text(
+                        "Core i7 PC ",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: appPrimaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
                     Divider(
                       color: Colors.black,
                       height: 20,

@@ -2,7 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:wheeloffortune/constants.dart';
 
-class ArrowView extends StatelessWidget {
+//Make the Arrow in the wheel
+class ArrowDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
