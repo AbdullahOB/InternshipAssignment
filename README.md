@@ -1,6 +1,6 @@
 # Internship Assignment
 
-# Geting Started 
+## Getting Started 
 clone the project by using `git clone https://github.com/AbdullahOB/InternshipAssignment.git` or you can download it as zip file.
 
 After cloning the project you can run it by opening a new terminal and write `flutter pub get` so that will download all the dependencies that you will need to run the application.
