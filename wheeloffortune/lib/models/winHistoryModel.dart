@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 final String HistoryTable = 'history';
 
 class WinHistoryFields {
@@ -32,9 +34,10 @@ class WinHistory {
       id: json[WinHistoryFields.id] as int?,
       prizeName: json[WinHistoryFields.prizeName] as String?,
       winDate: DateTime.parse(json[WinHistoryFields.winDate] as String));
+
   Map<String, Object?> toJson() => {
         WinHistoryFields.id: id,
         WinHistoryFields.prizeName: prizeName,
-        WinHistoryFields.winDate: winDate!.toIso8601String(),
+        WinHistoryFields.winDate: winDate!.toString().substring(0, 10),
       };
 }

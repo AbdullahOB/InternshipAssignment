@@ -25,7 +25,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         backgroundColor: appPrimaryColor,
         child: Icon(Icons.delete),
         onPressed: () async {
-          await HistoryDatabase.instance.delete();
+          await HistoryDatabase.instance.deleteAll();
           Navigator.of(context).pop();
         },
       ),

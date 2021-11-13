@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:wheeloffortune/components/ButtonMain.dart';
 import 'package:wheeloffortune/db/winHistory.dart';
 import 'package:wheeloffortune/models/winHistoryModel.dart';
+import 'package:wheeloffortune/screens/HistoryScreen/components/HistoryCardWidget.dart';
 
 class HistoryBody extends StatefulWidget {
   const HistoryBody({Key? key}) : super(key: key);
@@ -51,16 +52,15 @@ class _HistoryBodyState extends State<HistoryBody> {
   }
 
   Widget buildHistory() {
-    return Column(
-      children: <Widget>[
-        for (var i in wins)
-          Text(
-            i.prizeName.toString() +
-                "\t\t\t\t\t\t\t\t\t\t\t" +
-                i.winDate.toString(),
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
-          ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          for (var i in wins)
+            HistoryCardWidget(
+              winDate: i.winDate!.toIso8601String(),
+            ),
+        ],
+      ),
     );
   }
 

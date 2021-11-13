@@ -151,12 +151,8 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
   }
 
   void addWin(prize) async {
-    final isValid = true;
-
-    if (isValid) {
-      await addWinToHistory(prize);
-      Navigator.of(context).pop();
-    }
+    await addWinToHistory(prize);
+    Navigator.of(context).pop();
   }
 
   Future addWinToHistory(prize) async {
@@ -164,6 +160,7 @@ class _WheelBody extends State<WheelBody> with SingleTickerProviderStateMixin {
       prizeName: prize,
       winDate: DateTime.now(),
     );
+
     await HistoryDatabase.instance.create(win);
   }
 }
