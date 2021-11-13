@@ -9,4 +9,4 @@ After cloning the project you can run it by opening a new terminal and write `fl
 - *the code structure is like the following:* All screens are inside the lib folder, the component folder contains all widgets that used generally in the code, the db folder contains db files.
 - *you can edit colors by edit the constants.dart file*
 
-
+Then you can run the code using emulator or physical phone.
